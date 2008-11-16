@@ -1,0 +1,68 @@
+                               ats-libs
+             
+DESCZRIPTION:
+ats-libs is a collection of general purpose libraries and interfaces to c libraries.
+
+==========================
+INSTALLATION:
+
+  STEP 1: BUILDING
+    Individual Libraries
+      gmake <library name>
+
+    All Libraries
+      gmake
+
+  STEP 2: Installing
+    Move or softlink the ats-libs directory directly under your ATSHOME directory.
+
+==========================
+USAGE:
+For sepecific API documentation and usage instructions please refer to the files in 
+the doc directory and the README file for the library you are intrested in. However
+general usage is detailed below.
+
+Static files are located in <libname>/SATS so to include in your ats programs.
+  staload "ats-libs/<lib name>/SATS/<lib name>.sats
+Dynamic files are located in <libname>/DATS so to include in your ats programs.
+  dynload "ats-libs/<lib name>/DATS/<lib name>.dats
+CATS files are located in <libname>/CATS so to include in your ats programs.
+  %{ #include "ats-libs/<lib name>/DATS/<lib name>.cats %}
+Specific libraries my require additional loads, refer to library specific documentation 
+for details. Libraries can be used as true static or shared libraries or be emebeded 
+directly in your ats programs. 
+
+Shared and static mode
+----------------------
+
+Using libraries as shared or static generally on requires loading the static files in your 
+ats programs. When building your ats program you must reference the library in your linking 
+params.
+
+atscc -L$(ATSHOME)/ats-libs/<lib name>/lib -lats_<lib name> <external dependent libraries>
+
+If the library you are bulding is a wrapper library or had dependencies of external 
+libraries they must also be included in the linker params. Your programs will be build 
+using the shared library unless you specificaly direct the use of the shared library by 
+specifying --static in your linker params.
+
+To run your program the dependent shared libraries must be in your library search path. 
+You can accomplish this by adding it to your LD_LIBRARY_PATH as show below or the libraries 
+can be moved to a location already on your search path.
+  export LD_LIBRARY_PATH=$ATSHOME/ats_libs/<lib name>/lib
+For specific require ments refer to the README file for the library you are intrested in.
+
+Embeded mode
+------------
+To use the libraries in embeded mode the CATS and DATS files must also be included in your 
+programs. Additionally any dependent libraries must be included in your linker params.For 
+specific require ments refer to the README file for the library you are intrested in.
+
+Usage Examples:
+===============
+Refer to the files in the test directory under each library for examples of usage of the 
+libraries. Also for help on building refer to the Makefiles.  
+
+Maintainer
+==========
+ Mike Maul (mike <dot> maul <at> gmail <dot> com)

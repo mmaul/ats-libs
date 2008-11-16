@@ -1,0 +1,52 @@
+                               ats-libs Berkeley Database Binding
+
+DESCRIPTION:
+This is a low level wrapper for the Berkely Database. This was build using 
+Berkeley 4.7.5 it may work with older version. The implementation closely 
+follows the Berkeley C api, See the STATS/bdb.sats for types and functions.
+For interaction with the Berkley DB see the Berkeley API documentation.
+For a usage example see test/bdb_test.dats.
+
+USAGE:
+For sepecific API documentation and usage instructions please refer to the files in 
+the doc directory and the README file for the library you are intrested in. However
+general usage is detailed below.
+
+To include in your ats programs.
+  staload "ats-libs/bdb/SATS/bdb.sats
+
+To include the CATS files in your ats programs. (Only necessary if using in embed mode)
+  %{ #include "ats-libs/bdb/DATS/bdb.cats %}
+
+Shared and static mode
+----------------------
+
+Using libraries as shared or static generally on requires loading the static files in your 
+ats programs. When building your ats program you must reference the library in your linking 
+params.
+Shared Example
+  atscc  -o myfile  myfile.dats  -lats_bdb -ldb-4.7
+Static Example
+  atscc  -o myfile  myfile.dats  -static -lats_bdb -ldb-4.7
+
+To run your program the dependent shared libraries must be in your library search path. 
+You can accomplish this by adding it to your LD_LIBRARY_PATH as show below or the libraries 
+can be moved to a location already on your search path.
+  export LD_LIBRARY_PATH=$ATSHOME/ats_libs/bdb/lib
+For specific require ments refer to the README file for the library you are intrested in.
+
+Embeded mode
+------------
+To use the libraries in embeded mode the CATS and DATS files must also be included in your 
+programs. Additionally any dependent libraries must be included in your linker params.For 
+specific require ments refer to the README file for the library you are intrested in.
+Embeded Example
+   atscc  -o myfile_embeded  myfile_embeded.dats  -ldb-4.7
+
+Maintainer
+==========
+ Mike Maul (mike <dot> maul <at> gmail <dot> com)
+
+Author
+=========
+Maintainer: Mike Maul (mike <dot> maul <at> gmail <dot> com)
