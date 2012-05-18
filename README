@@ -3,7 +3,11 @@
 DESCZRIPTION:
 ats-libs is a collection of general purpose libraries and interfaces to c libraries.
 
+<<<<<<< HEAD
 ****-(=#)(^-=====-^)(#=)+****
+=======
+******==============******
+>>>>>>> 525d2a6857454c48a117fbd7692c576ca2baf0f2
 INSTALLATION:
 
   STEP 1: BUILDING
